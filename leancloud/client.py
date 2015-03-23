@@ -53,7 +53,7 @@ def need_init(func):
         if not headers:
             headers = {}
         headers['X-AVOSCloud-Application-Id'] = APP_ID
-        headers['User-Agent'] = 'AVOS Cloud python-{} SDK'.format(leancloud.__version__)
+        headers['User-Agent'] = 'AVOS Cloud Code Python {}'.format(leancloud.__version__)
         if APP_KEY:
             headers['X-AVOSCloud-Application-Key'] = APP_KEY
         else:
