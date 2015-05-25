@@ -34,7 +34,7 @@ setup(
     install_requires=[
         'arrow',
         'qiniu',
-        'requests',
+        'requests[security]',
         'iso8601',
         'werkzeug',
     ],
