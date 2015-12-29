@@ -50,7 +50,7 @@ class AuthorizationMiddleware(object):
     def parse_header(cls, environ):
         request = environ['leanengine.request']
         print request.headers
-        print request
+        print request.data
 
         app_id = request.headers.get('x-avoscloud-application-id')\
             or request.headers.get('x-uluru-application-id')\
