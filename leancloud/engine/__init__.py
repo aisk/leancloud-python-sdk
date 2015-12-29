@@ -34,6 +34,7 @@ class Engine(object):
 
     def __call__(self, environ, start_response):
         request = Request(environ)
+        print 'data ->', request.data
         environ['leanengine.request'] = request  # cache werkzeug request for other middlewares
 
         if request.path in ('/__engine/1/ping', '/__engine/1.1/ping/'):
