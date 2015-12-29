@@ -30,6 +30,7 @@ class AuthorizationMiddleware(object):
 
         self.parse_header(environ)
         app_params = environ['_app_params']
+        print 'xxx->', app_params
         if not any(app_params.values()):  # all app_params's value is None
             self.parse_body(environ)
 
