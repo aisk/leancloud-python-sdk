@@ -109,6 +109,7 @@ class LeanEngineApplication(object):
 
         params = to_native(request.get_data())
         values['params'] = json.loads(params) if params != '' else {}
+        print("values >>>", values)
 
         try:
             if endpoint == 'cloud_function':
@@ -279,9 +280,10 @@ def register_on_verified(verify_type):
 
 
 def dispatch_on_verified(verify_type, params):
+    print(">>>>>>", params)
     func_name = '__on_verified_' + verify_type
     from .authorization import MASTER_KEY
-    sign = params.pop('__sign', '')
+    sign = params.get('object', {}).pop('__sign', '')
     if not utils.verify_hook_sign(func_name, MASTER_KEY, sign):
         raise LeanEngineError(code=401, message='Unauthorized.')
 
@@ -304,7 +306,7 @@ def register_on_login(func):
 
 def dispatch_on_login(params):
     from .authorization import MASTER_KEY
-    sign = params.pop('__sign', '')
+    sign = params.get('object', {}).pop('__sign', '')
     if not utils.verify_hook_sign('__on_login__User', MASTER_KEY, sign):
         raise LeanEngineError(code=401, message='Unauthorized.')
 
